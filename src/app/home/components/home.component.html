@@ -1,0 +1,205 @@
+
+<div class="row">    
+  <div class="col-sm-12" *ngIf="profile.proLibelle=='administrateur'">
+    <app-stats-costumer></app-stats-costumer>  
+  </div>
+
+  <div class="col-sm-12" *ngIf="profile.proLibelle=='Integrateur' || profile.proLibelle=='integrateur'">
+    <app-statfolder></app-statfolder>  
+  </div>
+
+  </div>
+
+
+<div class="row">
+      <mat-form-field appearance="fill">
+        <mat-label>{{'widget.nom' | translate}}</mat-label>
+        <mat-select name="selecteddiagramme?s" (selectionChange)="changeWebsite()"
+         [(ngModel)]="selecteddiagrammes" id="" type="text" placeholder="Widgets" multiple>
+         <mat-option [checked]="isfirst" *ngFor="let w of widgets;let isfirst = first" [value]="w" >{{w.widgetTemplate.wtNom}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+</div>
+
+ 
+
+
+
+
+<div>
+
+  
+
+ <div class="row" *ngIf="selecteddiagrammes?.length<=0">
+    <div class="col-sm-6"   *ngFor="let w of widgets">
+
+      <div  *ngIf="w.widgetTemplate.wtNom=='Diagramme en baton'">
+        <app-statbaton></app-statbaton>
+      </div>
+     
+      <div  *ngIf="w.widgetTemplate.wtNom=='courbe'" style="margin-top: 25px;">
+        <app-appstatarea></app-appstatarea>
+      </div>
+
+         
+      <div  *ngIf="w.widgetTemplate.wtNom=='Diagramme circulaire'">
+        <app-appstatcirculaire></app-appstatcirculaire>
+      </div> 
+
+   <!--<div *ngIf="w.widgetTemplate.wtNom=='Diagramme en barres horizontales'" style="margin-top: 25px;">
+        <app-appstathorizontal></app-appstathorizontal>
+       </div>-->
+
+       <div *ngIf="w.widgetTemplate.wtNom=='Diagramme en barres horizontales empilees'" style="margin-top: 25px;">
+       <app-appstathoriempile></app-appstathoriempile>
+       </div>
+
+       <div *ngIf="w.widgetTemplate.wtNom=='Diagramme en colonne empilée'" style="margin-top: 25px;">
+        <app-appcolonneemp></app-appcolonneemp>
+        </div>
+
+        <div *ngIf="w.widgetTemplate.wtNom=='Diagramme à bulles'" style="margin-top: 25px;">
+          <app-appstatbulle></app-appstatbulle>
+          </div>
+
+         <!-- <div *ngIf="w.widgetTemplate.wtNom=='Diagramme de dispersion 3D'" style="margin-top: 25px;">
+            <app-app3d></app-app3d>
+            </div>-->
+    </div> 
+</div>
+
+<div class="row" *ngIf="selecteddiagrammes?.length>0">
+<div class="col-sm-6"  *ngFor="let w of selecteddiagrammes">
+  <div *ngIf="w.widgetTemplate.wtNom=='Diagramme en baton'">
+    <app-statbaton></app-statbaton>
+  </div>
+
+  <div *ngIf="w.widgetTemplate.wtNom=='courbe'" style="margin-top: 25px;">
+    <app-appstatarea></app-appstatarea>
+  </div>
+
+  <div *ngIf="w.widgetTemplate.wtNom=='Diagramme circulaire'" style="margin-top: 25px;">
+    <app-appstatcirculaire></app-appstatcirculaire>
+  </div>
+
+  <div *ngIf="w.widgetTemplate.wtNom=='Diagramme en barres horizontales'" style="margin-top: 25px;">
+   <app-appstathorizontal></app-appstathorizontal>
+  </div>
+
+  <div *ngIf="w.widgetTemplate.wtNom=='Diagramme en barres horizontales empilees'" style="margin-top: 25px;">
+    <app-appstathoriempile></app-appstathoriempile>
+    </div>
+
+    <div *ngIf="w.widgetTemplate.wtNom=='Diagramme en colonne empilée'" style="margin-top: 25px;">
+      <app-appcolonneemp></app-appcolonneemp>
+      </div>
+
+      <div *ngIf="w.widgetTemplate.wtNom=='Diagramme à bulles'" style="margin-top: 25px;">
+        <app-appstatbulle></app-appstatbulle>
+        </div>
+
+        <div *ngIf="w.widgetTemplate.wtNom=='Diagramme de dispersion 3D'" style="margin-top: 25px;">
+          <app-app3d></app-app3d>
+        </div>
+</div>
+
+</div>
+
+<!-- <div *ngFor="let widget of widgets">
+
+ <div *ngFor="let attr of widgetTemplateAttr">
+
+    
+     
+    <div *ngIf="widget.wdgCode==attr.widget.wdgCode">  
+      <div class="row" *ngIf="attr.widgetTemplate.wtNom=='Diagramme circulaire' || attr.widgetTemplate.wtNom=='Diagramme en baton' || attr.widgetTemplate.wtNom=='courbe'">
+        <div class="col-sm-6"> -->
+          <!-- <p>{{attr.widgetTemplate.wtNom}}</p> -->
+          <!-- <p>{{attr.widgetTemplate.wtNom}}</p> -->
+          <!-- <app-statbaton></app-statbaton>
+        </div> -->
+
+        <!-- <div class="col-sm-6">  -->
+          <!-- <p>{{attr.widgetTemplate.wtNom}}</p> -->
+          <!-- <app-appstatcirculaire></app-appstatcirculaire>
+        </div> -->
+         
+        <!-- <div style="margin: 25px;">  -->
+          <!-- <p>{{attr.widgetTemplate.wtNom}}</p> -->
+          <!-- <app-appstatarea></app-appstatarea> -->
+         
+        <!-- </div> -->
+
+        <!-- <div class="row" style="margin: 25px;" *ngIf="attr.widgetTemplate.wtNom=='Diagramme circulaire' || attr.widgetTemplate.wtNom=='Diagramme en baton' || attr.widgetTemplate.wtNom=='courbe'">
+          <app-appstatarea></app-appstatarea>
+        </div>
+
+      </div>
+
+    </div>
+ </div>
+
+</div> -->
+
+  <!-- <div *ngIf="widget.wdgCode=='nbr_by_mdl'">
+    <div class="row">
+      <div class="col-sm-12">
+        <app-stats> </app-stats>
+      </div>
+
+    </div>
+  </div>
+</div><br>
+<div *ngFor="let widget of widgets">
+  <div *ngIf="widget.wdgCode=='stats_costumer'">
+    <div class="row">
+      <div class="col-sm-12">
+        <app-stats-costumer> </app-stats-costumer>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div *ngFor="let widget of widgets">
+  <div *ngIf="widget.wdgCode=='list_uti'">
+    <div class="row">
+      <div class="col-sm-12">
+        <app-stats-costumer> </app-stats-costumer>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<br>
+<div *ngIf="b && l">
+    <div class="row" >
+      <div class="col-sm-6">
+          <app-wkform-courbe></app-wkform-courbe>
+      </div>
+      <div class="col-sm-6">
+          <app-users-barre></app-users-barre>
+      </div>
+    </div>
+    
+</div>
+<div *ngIf="b && !l ">
+ 
+  <div class="row" >
+    <div class="col-sm-6">
+        <app-users-barre></app-users-barre>
+    </div>
+  </div>
+</div>
+<div *ngIf="l && !b">
+  <div class="row" >
+    <div class="col-sm-6">
+      <app-wkform-courbe></app-wkform-courbe>
+    </div>
+  </div>
+  
+</div> -->
+
+
